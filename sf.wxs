@@ -5,6 +5,10 @@
 
     <StandardDirectory Id="ProgramFiles64Folder">
       <Directory Id="InstallFolder" Name="SF">
+        <Directory Id="LibsFolder" Name="libs">
+          <Directory Id="Libs64Folder" Name="64">
+          </Directory>
+        </Directory>
       </Directory>
     </StandardDirectory>
 
@@ -14,8 +18,9 @@
 
     <!--<UIRef Id="WixUI_InstallDir"/>-->
 
-    <ComponentGroup Id="InstallComponentsTest" Directory="InstallFolder">
+    <ComponentGroup Id="InstallComponentsTest" Directory="Libs64Folder">
       <Component Guid="243e7812-1111-1111-1111-123456789112">
+        <Environment Id="library_path" Action="set" Name="LIBRARY_PATH" Value="[LibsFolder]" Separator=";" System="yes" Part="last" Permanent="true"/>
         <File Source="C:\local\libs\64\boost_chrono-vc142-mt-gd-x64-1_79.dll"/>
       </Component>
     </ComponentGroup>
