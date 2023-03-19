@@ -2,18 +2,20 @@
   <Package Name="SF" Manufacturer="CSIRO" Version="0.1" UpgradeCode="2e7d7f1d-1111-1111-1111-b363c7ce3a1e">
     <MajorUpgrade DowngradeErrorMessage="A newer version was detected"/>
 
-
     <StandardDirectory Id="ProgramFiles64Folder">
       <Directory Id="InstallFolder" Name="SF">
         <Directory Id="LibsFolder" Name="libs">
           <Directory Id="Libs64Folder" Name="64">
           </Directory>
         </Directory>
+        <Directory Id="PythonPkgsFolder" Name="python">
+        </Directory>
       </Directory>
     </StandardDirectory>
 
     <Feature Id="All">
       <ComponentGroupRef Id="InstallComponentsTest"/>
+      <ComponentGroupRef Id="InstallPyComponentsTest"/>
     </Feature>
 
     <!--<UIRef Id="WixUI_InstallDir"/>-->
@@ -24,6 +26,13 @@
         <File Source="C:\local\libs\64\boost_chrono-vc142-mt-gd-x64-1_79.dll"/>
       </Component>
     </ComponentGroup>
+
+    <ComponentGroup Id="InstallPyComponentsTest" Directory="PythonPkgsFolder">
+      <Component Guid="aaaa7812-1111-1111-1111-123456789112">
+        <File Source="C:\local\python\uchronia-2.3.7-py2.py3-none-any.whl"/>
+      </Component>
+    </ComponentGroup>
+
 
     <!--<ComponentGroup Id="InstallComponents" Directory="InstallFolder">
       <Component Guid="243e7812-1111-1111-1111-745ba964291a">
