@@ -1,0 +1,128 @@
+<Wix xmlns="http://wixtoolset.org/schemas/v4/wxs">
+  <Package Name="SF" Manufacturer="CSIRO" Version="0.1" UpgradeCode="2e7d7f1d-1111-1111-1111-b363c7ce3a1e">
+    <MajorUpgrade DowngradeErrorMessage="A newer version was detected"/>
+
+
+    <StandardDirectory Id="ProgramFiles64Folder">
+      <Directory Id="InstallFolder" Name="SF">
+      </Directory>
+    </StandardDirectory>
+
+    <Feature Id="All">
+      <ComponentGroupRef Id="InstallComponentsTest"/>
+    </Feature>
+
+    <!--<UIRef Id="WixUI_InstallDir"/>-->
+
+    <ComponentGroup Id="InstallComponentsTest" Directory="InstallFolder">
+      <Component Guid="243e7812-1111-1111-1111-123456789112">
+        <File Source="C:\local\libs\64\boost_chrono-vc142-mt-gd-x64-1_79.dll"/>
+      </Component>
+    </ComponentGroup>
+
+    <!--<ComponentGroup Id="InstallComponents" Directory="InstallFolder">
+      <Component Guid="243e7812-1111-1111-1111-745ba964291a">
+        <File Source="C:\local\libs\64\boost_chrono-vc142-mt-gd-x64-1_79.dll"/>
+        <File Source="C:\local\libs\64\boost_chrono-vc142-mt-gd-x64-1_79.lib"/>
+        <File Source="C:\local\libs\64\boost_chrono-vc142-mt-gd-x64-1_79.pdb"/>
+        <File Source="C:\local\libs\64\boost_chrono-vc142-mt-x64-1_79.dll"/>
+        <File Source="C:\local\libs\64\boost_chrono-vc142-mt-x64-1_79.lib"/>
+        <File Source="C:\local\libs\64\boost_date_time-vc142-mt-gd-x64-1_79.dll"/>
+        <File Source="C:\local\libs\64\boost_date_time-vc142-mt-gd-x64-1_79.lib"/>
+        <File Source="C:\local\libs\64\boost_date_time-vc142-mt-gd-x64-1_79.pdb"/>
+        <File Source="C:\local\libs\64\boost_date_time-vc142-mt-x64-1_79.dll"/>
+        <File Source="C:\local\libs\64\boost_date_time-vc142-mt-x64-1_79.lib"/>
+        <File Source="C:\local\libs\64\boost_filesystem-vc142-mt-gd-x64-1_79.dll"/>
+        <File Source="C:\local\libs\64\boost_filesystem-vc142-mt-gd-x64-1_79.lib"/>
+        <File Source="C:\local\libs\64\boost_filesystem-vc142-mt-gd-x64-1_79.pdb"/>
+        <File Source="C:\local\libs\64\boost_filesystem-vc142-mt-x64-1_79.dll"/>
+        <File Source="C:\local\libs\64\boost_filesystem-vc142-mt-x64-1_79.lib"/>
+        <File Source="C:\local\libs\64\boost_regex-vc142-mt-gd-x64-1_79.dll"/>
+        <File Source="C:\local\libs\64\boost_regex-vc142-mt-gd-x64-1_79.lib"/>
+        <File Source="C:\local\libs\64\boost_regex-vc142-mt-gd-x64-1_79.pdb"/>
+        <File Source="C:\local\libs\64\boost_regex-vc142-mt-x64-1_79.dll"/>
+        <File Source="C:\local\libs\64\boost_regex-vc142-mt-x64-1_79.lib"/>
+        <File Source="C:\local\libs\64\boost_system-vc142-mt-gd-x64-1_79.dll"/>
+        <File Source="C:\local\libs\64\boost_system-vc142-mt-gd-x64-1_79.lib"/>
+        <File Source="C:\local\libs\64\boost_system-vc142-mt-gd-x64-1_79.pdb"/>
+        <File Source="C:\local\libs\64\boost_system-vc142-mt-x64-1_79.dll"/>
+        <File Source="C:\local\libs\64\boost_system-vc142-mt-x64-1_79.lib"/>
+        <File Source="C:\local\libs\64\boost_thread-vc142-mt-gd-x64-1_79.dll"/>
+        <File Source="C:\local\libs\64\boost_thread-vc142-mt-gd-x64-1_79.lib"/>
+        <File Source="C:\local\libs\64\boost_thread-vc142-mt-gd-x64-1_79.pdb"/>
+        <File Source="C:\local\libs\64\boost_thread-vc142-mt-x64-1_79.dll"/>
+        <File Source="C:\local\libs\64\boost_thread-vc142-mt-x64-1_79.lib"/>
+        <File Source="C:\local\libs\64\chypp.dll"/>
+        <File Source="C:\local\libs\64\chypp.lib"/>
+        <File Source="C:\local\libs\64\concrt140.dll"/>
+        <File Source="C:\local\libs\64\datatypes.dll"/>
+        <File Source="C:\local\libs\64\datatypes.lib"/>
+        <File Source="C:\local\libs\64\hdf.dll"/>
+        <File Source="C:\local\libs\64\hdf.lib"/>
+        <File Source="C:\local\libs\64\hdf5.dll"/>
+        <File Source="C:\local\libs\64\hdf5.lib"/>
+        <File Source="C:\local\libs\64\hdf5_hl.dll"/>
+        <File Source="C:\local\libs\64\hdf5_hl.lib"/>
+        <File Source="C:\local\libs\64\hdf5_tools.dll"/>
+        <File Source="C:\local\libs\64\hdf5_tools.lib"/>
+        <File Source="C:\local\libs\64\jpeg.dll"/>
+        <File Source="C:\local\libs\64\jpeg.lib"/>
+        <File Source="C:\local\libs\64\jsoncpp.dll"/>
+        <File Source="C:\local\libs\64\jsoncpp.lib"/>
+        <File Source="C:\local\libs\64\libboost_chrono-vc142-mt-gd-x64-1_79.lib"/>
+        <File Source="C:\local\libs\64\libboost_chrono-vc142-mt-s-x64-1_79.lib"/>
+        <File Source="C:\local\libs\64\libboost_chrono-vc142-mt-sgd-x64-1_79.lib"/>
+        <File Source="C:\local\libs\64\libboost_chrono-vc142-mt-x64-1_79.lib"/>
+        <File Source="C:\local\libs\64\libboost_date_time-vc142-mt-gd-x64-1_79.lib"/>
+        <File Source="C:\local\libs\64\libboost_date_time-vc142-mt-s-x64-1_79.lib"/>
+        <File Source="C:\local\libs\64\libboost_date_time-vc142-mt-sgd-x64-1_79.lib"/>
+        <File Source="C:\local\libs\64\libboost_date_time-vc142-mt-x64-1_79.lib"/>
+        <File Source="C:\local\libs\64\libboost_filesystem-vc142-mt-gd-x64-1_79.lib"/>
+        <File Source="C:\local\libs\64\libboost_filesystem-vc142-mt-s-x64-1_79.lib"/>
+        <File Source="C:\local\libs\64\libboost_filesystem-vc142-mt-sgd-x64-1_79.lib"/>
+        <File Source="C:\local\libs\64\libboost_filesystem-vc142-mt-x64-1_79.lib"/>
+        <File Source="C:\local\libs\64\libboost_regex-vc142-mt-gd-x64-1_79.lib"/>
+        <File Source="C:\local\libs\64\libboost_regex-vc142-mt-s-x64-1_79.lib"/>
+        <File Source="C:\local\libs\64\libboost_regex-vc142-mt-sgd-x64-1_79.lib"/>
+        <File Source="C:\local\libs\64\libboost_regex-vc142-mt-x64-1_79.lib"/>
+        <File Source="C:\local\libs\64\libboost_system-vc142-mt-gd-x64-1_79.lib"/>
+        <File Source="C:\local\libs\64\libboost_system-vc142-mt-s-x64-1_79.lib"/>
+        <File Source="C:\local\libs\64\libboost_system-vc142-mt-sgd-x64-1_79.lib"/>
+        <File Source="C:\local\libs\64\libboost_system-vc142-mt-x64-1_79.lib"/>
+        <File Source="C:\local\libs\64\libboost_thread-vc142-mt-gd-x64-1_79.lib"/>
+        <File Source="C:\local\libs\64\libboost_thread-vc142-mt-s-x64-1_79.lib"/>
+        <File Source="C:\local\libs\64\libboost_thread-vc142-mt-sgd-x64-1_79.lib"/>
+        <File Source="C:\local\libs\64\libboost_thread-vc142-mt-x64-1_79.lib"/>
+        <File Source="C:\local\libs\64\libcurl.dll"/>
+        <File Source="C:\local\libs\64\libcurl_imp.lib"/>
+        <File Source="C:\local\libs\64\libhdf.lib"/>
+        <File Source="C:\local\libs\64\libhdf5.lib"/>
+        <File Source="C:\local\libs\64\libhdf5_hl.lib"/>
+        <File Source="C:\local\libs\64\libhdf5_tools.lib"/>
+        <File Source="C:\local\libs\64\libmfhdf.lib"/>
+        <File Source="C:\local\libs\64\libxdr.lib"/>
+        <File Source="C:\local\libs\64\mfhdf.dll"/>
+        <File Source="C:\local\libs\64\mfhdf.lib"/>
+        <File Source="C:\local\libs\64\moirai.dll"/>
+        <File Source="C:\local\libs\64\moirai.lib"/>
+        <File Source="C:\local\libs\64\msvcp140.dll"/>
+        <File Source="C:\local\libs\64\netcdf.dll"/>
+        <File Source="C:\local\libs\64\netcdf.lib"/>
+        <File Source="C:\local\libs\64\qpp.dll"/>
+        <File Source="C:\local\libs\64\qpp.lib"/>
+        <File Source="C:\local\libs\64\qppcore.dll"/>
+        <File Source="C:\local\libs\64\qppcore.lib"/>
+        <File Source="C:\local\libs\64\swift.dll"/>
+        <File Source="C:\local\libs\64\swift.lib"/>
+        <File Source="C:\local\libs\64\vcruntime140.dll"/>
+        <File Source="C:\local\libs\64\xdr.dll"/>
+        <File Source="C:\local\libs\64\xdr.lib"/>
+        <File Source="C:\local\libs\64\yaml-cpp.dll"/>
+        <File Source="C:\local\libs\64\yaml-cpp.lib"/>
+        <File Source="C:\local\libs\64\zlib.lib"/>
+        <File Source="C:\local\libs\64\zlib1.dll"/>
+        <File Source="C:\local\libs\64\zlibstatic.lib"/>
+      </Component>
+    </ComponentGroup>-->
+  </Package>
+</Wix>
