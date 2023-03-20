@@ -7,4 +7,15 @@
     <PackageReference Include="WixToolset.UI.wixext" Version="4.0.0-rc.4" />
     <PackageReference Include="WixToolset.Util.wixext" Version="4.0.0-rc.4" />
   </ItemGroup>
+
+  <Target Name="SignCabs">
+    <Message Importance="high" Text="SignCabs: @(SignCabs)" />
+    <Exec Command='signtool.exe sign /v /f $(TestCertificate) /p $(TestPassword) %(SignCabs.FullPath)' />
+  </Target>
+  
+  <Target Name="SignMsi">
+    <Message Importance="high" Text="SignMsi: @(SignMsi)" />
+    <Exec Command='signtool.exe sign /v /f $(TestCertificate) /p $(TestPassword) "%(SignMsi.FullPath)" ' />
+  </Target>
+
 </Project>
