@@ -1,0 +1,17 @@
+{
+	"folders": [
+		{
+			"path": "../WiXInstallerExamples"
+		},
+		{
+			"path": "../work-blog"
+		},
+		{
+			"path": "../sffs-docs"
+		},
+		{
+			"path": "."
+		}
+	],
+	"settings": {}
+}

@@ -1,5 +1,5 @@
 <Wix xmlns="http://wixtoolset.org/schemas/v4/wxs">
-  <Package Name="SF" Manufacturer="CSIRO" Version="0.1" UpgradeCode="2e7d7f1d-1111-1111-1111-b363c7ce3a1e">
+  <Package Name="SF" Manufacturer="CSIRO" Version="$(Version)" UpgradeCode="2e7d7f1d-1111-1111-1111-b363c7ce3a1e">
     <MajorUpgrade DowngradeErrorMessage="A newer version was detected"/>
 
     <StandardDirectory Id="ProgramFiles64Folder">
@@ -29,7 +29,7 @@
 
     <ComponentGroup Id="InstallPyComponentsTest" Directory="PythonPkgsFolder">
       <Component Guid="aaaa7812-1111-1111-1111-123456789112">
-        <File Source="C:\local\python\uchronia-2.3.7-py2.py3-none-any.whl"/>
+        <File Source="C:\local\python\uchronia-2.3.8-py2.py3-none-any.whl"/>
       </Component>
     </ComponentGroup>
 

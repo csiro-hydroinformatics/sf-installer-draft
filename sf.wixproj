@@ -1,6 +1,10 @@
-<Project Sdk="WixToolset.Sdk/4.0.0-rc.3">
+﻿<Project Sdk="WixToolset.Sdk/4.0.0-rc.4">
+  <PropertyGroup>
+    <DefineConstants>Version=0.2.0.0</DefineConstants>
+    <SignOutput>true</SignOutput>
+  </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="WixToolset.UI.wixext" Version="4.0.0-rc.3" />
-    <PackageReference Include="WixToolset.Util.wixext" Version="4.0.0-rc.3" />
+    <PackageReference Include="WixToolset.UI.wixext" Version="4.0.0-rc.4" />
+    <PackageReference Include="WixToolset.Util.wixext" Version="4.0.0-rc.4" />
   </ItemGroup>
 </Project>
