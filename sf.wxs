@@ -1,5 +1,5 @@
-<Wix xmlns="http://wixtoolset.org/schemas/v4/wxs">
-  <Package Name="SF" Manufacturer="CSIRO" Version="$(Version)" UpgradeCode="2e7d7f1d-1111-1111-1111-b363c7ce3a1e">
+<Wix xmlns="http://wixtoolset.org/schemas/v4/wxs"  xmlns:ui="http://wixtoolset.org/schemas/v4/wxs/ui">
+  <Package Name="SF" Manufacturer="CSIRO" Version="$(Version)" UpgradeCode="2e7d7f1d-1111-1111-1111-b363c7ce3a1e" Scope="perUserOrMachine">
     <MajorUpgrade DowngradeErrorMessage="A newer version was detected"/>
 
     <!--our stack used to be compiled for 32/64 bits, but in practice 32 bits is obsolete-->
@@ -20,9 +20,19 @@
       <ComponentGroupRef Id="InstallPyComponentsTest"/>
     </Feature>
 
-    <!--Placeholder for UI options-->
-    <!--<UIRef Id="WixUI_InstallDir"/>-->
+    <WixVariable
+      Id="WixUILicenseRtf"
+      Value="license.rtf"
+      />
 
+    <!--Placeholder for UI options-->
+    <UI Id="MyWixUI">
+      <ui:WixUI
+              Id="WixUI_InstallDir"
+              InstallDirectory="INSTALLFOLDER"
+        />
+    </UI>
+    
     <ComponentGroup Id="InstallComponentsTest" Directory="Libs64Folder">
       <Component Guid="243e7812-1111-1111-1111-123456789112">
         <Environment Id="library_path" Action="set" Name="LIBRARY_PATH" Value="[LibsFolder]" Separator=";" System="yes" Part="last" Permanent="true"/>
