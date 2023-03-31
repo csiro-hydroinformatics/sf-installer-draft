@@ -16,8 +16,8 @@
     </StandardDirectory>
 
     <Feature Id="All">
-      <ComponentGroupRef Id="InstallComponentsTest"/>
-      <ComponentGroupRef Id="InstallPyComponentsTest"/>
+      <ComponentGroupRef Id="NativeLibrariesComponent"/>
+      <ComponentGroupRef Id="PythonWheelsComponent"/>
     </Feature>
 
     <WixVariable
@@ -25,17 +25,25 @@
       Value="license.rtf"
       />
 
-    <!--Placeholder for UI options-->
     <UI Id="MyWixUI">
       <ui:WixUI
               Id="WixUI_InstallDir"
               InstallDirectory="INSTALLFOLDER"
         />
     </UI>
-    
-    <ComponentGroup Id="InstallComponentsTest" Directory="Libs64Folder">
+
+    <WixVariable
+      Id="WixUIDialogBmp"
+      Value="img\dialog-sf.png"
+    />
+    <WixVariable
+      Id="WixUIBannerBmp"
+      Value="img\banner-sf.png"
+    />
+
+    <ComponentGroup Id="NativeLibrariesComponent" Directory="Libs64Folder">
       <Component Guid="243e7812-1111-1111-1111-123456789112">
-        <Environment Id="library_path" Action="set" Name="LIBRARY_PATH" Value="[LibsFolder]" Separator=";" System="yes" Part="last" Permanent="true"/>
+        <Environment Id="library_path" Action="set" Name="LIBRARY_PATH" Value="[LibsFolder]" Separator=";" System="false" Part="last" Permanent="true"/>
         <!-- <File Source="C:\local\libs\64\boost_chrono-vc142-mt-gd-x64-1_79.dll"/>
         <File Source="C:\local\libs\64\boost_chrono-vc142-mt-gd-x64-1_79.lib"/>
         <File Source="C:\local\libs\64\boost_chrono-vc142-mt-gd-x64-1_79.pdb"/>
@@ -139,7 +147,8 @@
       </Component>
     </ComponentGroup>
 
-    <ComponentGroup Id="InstallPyComponentsTest" Directory="PythonPkgsFolder"> <!--TODO: Source with customisable build time variable-->
+    <ComponentGroup Id="PythonWheelsComponent" Directory="PythonPkgsFolder">
+      <!--TODO: Source attribute with customisable build time variable-->
       <Component Guid="aaaa7812-1111-1111-1111-123456789112">
         <File Source="C:\local\python\cinterop-0.13.0-py2.py3-none-any.whl" />
         <!--<File Source="C:\local\python\fogss-2.4.1-py2.py3-none-any.whl" />
