@@ -18,6 +18,7 @@
     <Feature Id="All">
       <ComponentGroupRef Id="NativeLibrariesComponent"/>
       <ComponentGroupRef Id="PythonWheelsComponent"/>
+      <ComponentGroupRef Id="DocsComponent"/>
     </Feature>
 
     <WixVariable
@@ -40,6 +41,16 @@
       Id="WixUIBannerBmp"
       Value="img\banner-sf.png"
     />
+
+    <Icon Id="sf_favicon.ico" SourceFile="img\favicon.ico" />
+
+    <ComponentGroup Id="DocsComponent" Directory="PythonPkgsFolder">
+      <Component Guid="aaaa7812-1234-4321-1111-123456789112">
+        <File Id="IntroductionSF" Source="intro.html" />
+        <Shortcut Name="Getting Started" Directory="ProgramMenuFolder" Advertise="yes"
+                  Icon="sf_favicon.ico" />
+      </Component>
+    </ComponentGroup>
 
     <ComponentGroup Id="NativeLibrariesComponent" Directory="Libs64Folder">
       <Component Guid="243e7812-1111-1111-1111-123456789112">

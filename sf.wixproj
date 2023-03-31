@@ -8,6 +8,10 @@
     <PackageReference Include="WixToolset.Util.wixext" Version="4.0.0-rc.4" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Content Include="img/favicon.ico" />
+  </ItemGroup>
+
   <Target Name="SignCabs">
     <Message Importance="high" Text="SignCabs: @(SignCabs)" />
     <Exec Command='signtool.exe sign /v /f $(TestCertificate) /p $(TestPassword) %(SignCabs.FullPath)' />
