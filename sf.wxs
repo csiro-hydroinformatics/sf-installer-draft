@@ -1,9 +1,11 @@
-<Wix xmlns="http://wixtoolset.org/schemas/v4/wxs">
-  <Package Name="SF" Manufacturer="CSIRO" Version="0.1" UpgradeCode="2e7d7f1d-1111-1111-1111-b363c7ce3a1e">
+<Wix xmlns="http://wixtoolset.org/schemas/v4/wxs"  xmlns:ui="http://wixtoolset.org/schemas/v4/wxs/ui">
+  <Package Name="SF" Manufacturer="CSIRO" Version="$(Version)" UpgradeCode="2e7d7f1d-1111-1111-1111-b363c7ce3a1e" Scope="perUserOrMachine">
     <MajorUpgrade DowngradeErrorMessage="A newer version was detected"/>
 
+    <!--our stack used to be compiled for 32/64 bits, but in practice 32 bits is obsolete-->
     <StandardDirectory Id="ProgramFiles64Folder">
-      <Directory Id="InstallFolder" Name="SF">
+      <!--We put installfolder in uppercase, which means the user can override the default location-->
+      <Directory Id="INSTALLFOLDER" Name="SF">
         <Directory Id="LibsFolder" Name="libs">
           <Directory Id="Libs64Folder" Name="64">
           </Directory>
@@ -14,29 +16,46 @@
     </StandardDirectory>
 
     <Feature Id="All">
-      <ComponentGroupRef Id="InstallComponentsTest"/>
-      <ComponentGroupRef Id="InstallPyComponentsTest"/>
+      <ComponentGroupRef Id="NativeLibrariesComponent"/>
+      <ComponentGroupRef Id="PythonWheelsComponent"/>
+      <ComponentGroupRef Id="DocsComponent"/>
     </Feature>
 
-    <!--<UIRef Id="WixUI_InstallDir"/>-->
+    <WixVariable
+      Id="WixUILicenseRtf"
+      Value="license.rtf"
+      />
 
-    <ComponentGroup Id="InstallComponentsTest" Directory="Libs64Folder">
+    <UI Id="MyWixUI">
+      <ui:WixUI
+              Id="WixUI_InstallDir"
+              InstallDirectory="INSTALLFOLDER"
+        />
+    </UI>
+
+    <WixVariable
+      Id="WixUIDialogBmp"
+      Value="img\dialog-sf.png"
+    />
+    <WixVariable
+      Id="WixUIBannerBmp"
+      Value="img\banner-sf.png"
+    />
+
+    <Icon Id="sf_favicon.ico" SourceFile="img\favicon.ico" />
+
+    <ComponentGroup Id="DocsComponent" Directory="PythonPkgsFolder">
+      <Component Guid="aaaa7812-1234-4321-1111-123456789112">
+        <File Id="IntroductionSF" Source="intro.html" />
+        <Shortcut Name="Getting Started" Directory="ProgramMenuFolder" Advertise="yes"
+                  Icon="sf_favicon.ico" />
+      </Component>
+    </ComponentGroup>
+
+    <ComponentGroup Id="NativeLibrariesComponent" Directory="Libs64Folder">
       <Component Guid="243e7812-1111-1111-1111-123456789112">
-        <Environment Id="library_path" Action="set" Name="LIBRARY_PATH" Value="[LibsFolder]" Separator=";" System="yes" Part="last" Permanent="true"/>
-        <File Source="C:\local\libs\64\boost_chrono-vc142-mt-gd-x64-1_79.dll"/>
-      </Component>
-    </ComponentGroup>
-
-    <ComponentGroup Id="InstallPyComponentsTest" Directory="PythonPkgsFolder">
-      <Component Guid="aaaa7812-1111-1111-1111-123456789112">
-        <File Source="C:\local\python\uchronia-2.3.7-py2.py3-none-any.whl"/>
-      </Component>
-    </ComponentGroup>
-
-
-    <!--<ComponentGroup Id="InstallComponents" Directory="InstallFolder">
-      <Component Guid="243e7812-1111-1111-1111-745ba964291a">
-        <File Source="C:\local\libs\64\boost_chrono-vc142-mt-gd-x64-1_79.dll"/>
+        <Environment Id="library_path" Action="set" Name="LIBRARY_PATH" Value="[LibsFolder]" Separator=";" System="false" Part="last" Permanent="true"/>
+        <!-- <File Source="C:\local\libs\64\boost_chrono-vc142-mt-gd-x64-1_79.dll"/>
         <File Source="C:\local\libs\64\boost_chrono-vc142-mt-gd-x64-1_79.lib"/>
         <File Source="C:\local\libs\64\boost_chrono-vc142-mt-gd-x64-1_79.pdb"/>
         <File Source="C:\local\libs\64\boost_chrono-vc142-mt-x64-1_79.dll"/>
@@ -125,18 +144,30 @@
         <File Source="C:\local\libs\64\qpp.dll"/>
         <File Source="C:\local\libs\64\qpp.lib"/>
         <File Source="C:\local\libs\64\qppcore.dll"/>
-        <File Source="C:\local\libs\64\qppcore.lib"/>
+        <File Source="C:\local\libs\64\qppcore.lib"/> -->
         <File Source="C:\local\libs\64\swift.dll"/>
         <File Source="C:\local\libs\64\swift.lib"/>
-        <File Source="C:\local\libs\64\vcruntime140.dll"/>
+        <!-- <File Source="C:\local\libs\64\vcruntime140.dll"/>
         <File Source="C:\local\libs\64\xdr.dll"/>
         <File Source="C:\local\libs\64\xdr.lib"/>
         <File Source="C:\local\libs\64\yaml-cpp.dll"/>
         <File Source="C:\local\libs\64\yaml-cpp.lib"/>
         <File Source="C:\local\libs\64\zlib.lib"/>
         <File Source="C:\local\libs\64\zlib1.dll"/>
-        <File Source="C:\local\libs\64\zlibstatic.lib"/>
+        <File Source="C:\local\libs\64\zlibstatic.lib"/> -->
       </Component>
-    </ComponentGroup>-->
+    </ComponentGroup>
+
+    <ComponentGroup Id="PythonWheelsComponent" Directory="PythonPkgsFolder">
+      <!--TODO: Source attribute with customisable build time variable-->
+      <Component Guid="aaaa7812-1111-1111-1111-123456789112">
+        <File Source="C:\local\python\cinterop-0.13.0-py2.py3-none-any.whl" />
+        <!--<File Source="C:\local\python\fogss-2.4.1-py2.py3-none-any.whl" />
+        <File Source="C:\local\python\refcount-1.2.0-py2.py3-none-any.whl" />
+        <File Source="C:\local\python\swift2-2.4.1-py2.py3-none-any.whl" />
+        <File Source="C:\local\python\uchronia-2.4.1-py2.py3-none-any.whl" />-->
+      </Component>
+    </ComponentGroup>
+
   </Package>
 </Wix>
